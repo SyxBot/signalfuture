@@ -1,0 +1,199 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0d0f14;
+  --surface: #161a22;
+  --border: #252a35;
+  --text: #e2e8f0;
+  --muted: #7a8499;
+  --accent: #6366f1;
+  --green: #22c55e;
+  --red: #ef4444;
+  --yellow: #f59e0b;
+  --sm-badge: #7c3aed;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 14px;
+  min-height: 100vh;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 24px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+header h1 { font-size: 1.2rem; letter-spacing: 0.05em; color: var(--accent); }
+
+.dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.dot.connected    { background: var(--green); }
+.dot.disconnected { background: var(--red); }
+.dot.connecting   { background: var(--yellow); animation: pulse 1.2s infinite; }
+
+@keyframes pulse { 0%,100% { opacity:1 } 50% { opacity:0.3 } }
+
+#token-count { color: var(--muted); font-size: 0.8rem; }
+
+main {
+  display: flex;
+  gap: 0;
+  height: calc(100vh - 53px);
+}
+
+/* ── Filter Panel ─────────────────────────────────────── */
+#filter-panel {
+  width: 240px;
+  min-width: 200px;
+  padding: 16px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#filter-panel h2 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 4px; }
+
+#filter-panel label {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+#filter-panel input[type="number"] {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text);
+  padding: 5px 8px;
+  font-size: 0.82rem;
+  width: 100%;
+}
+
+.toggle-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 4px 0;
+}
+
+.toggle-row label {
+  flex-direction: row;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  color: var(--text);
+}
+
+button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 600;
+  background: var(--accent);
+  color: #fff;
+  transition: opacity 0.15s;
+}
+button:hover { opacity: 0.85; }
+button.secondary { background: var(--border); color: var(--text); }
+
+/* ── Token Grid ───────────────────────────────────────── */
+#feed {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+#token-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.token-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: border-color 0.15s;
+}
+.token-card:hover { border-color: var(--accent); }
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-header img {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--border);
+}
+
+.card-header .name-block .symbol { font-size: 1rem; font-weight: 700; }
+.card-header .name-block .name   { font-size: 0.72rem; color: var(--muted); }
+
+.card-price { font-size: 0.92rem; font-weight: 600; margin-left: auto; white-space: nowrap; }
+
+.card-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 12px;
+  font-size: 0.75rem;
+}
+
+.stat { display: flex; flex-direction: column; }
+.stat .label { color: var(--muted); font-size: 0.68rem; }
+.stat .value { font-weight: 600; }
+
+.card-flags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  font-size: 0.68rem;
+}
+
+.badge {
+  padding: 2px 7px;
+  border-radius: 3px;
+  font-weight: 600;
+}
+.badge.renounced { background: rgba(34,197,94,0.15); color: var(--green); }
+.badge.lp-burned { background: rgba(34,197,94,0.15); color: var(--green); }
+.badge.honeypot  { background: rgba(239,68,68,0.15);  color: var(--red); }
+.badge.sm        { background: rgba(124,58,237,0.2);  color: #a78bfa; }
+.badge.source    { background: rgba(99,102,241,0.12); color: var(--accent); }
+
+.card-age { font-size: 0.7rem; color: var(--muted); }
+
+.hidden { display: none !important; }
+
+/* ── Responsive ───────────────────────────────────────── */
+@media (max-width: 600px) {
+  main { flex-direction: column; height: auto; }
+  #filter-panel { width: 100%; border-right: none; border-bottom: 1px solid var(--border); }
+}

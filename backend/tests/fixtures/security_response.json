@@ -1,0 +1,11 @@
+{
+  "code": 0,
+  "msg": "success",
+  "data": {
+    "is_renounced": true,
+    "lp_burned": true,
+    "is_honeypot": false,
+    "buy_tax": "0.00",
+    "sell_tax": "0.00"
+  }
+}

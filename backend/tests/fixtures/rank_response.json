@@ -1,0 +1,33 @@
+{
+  "code": 0,
+  "msg": "success",
+  "data": {
+    "rank": [
+      {
+        "address": "So11111111111111111111111111111111111111112",
+        "symbol": "TESTKOIN",
+        "name": "Test Koin",
+        "logo": "https://example.com/logo.png",
+        "price": 0.0012345,
+        "price_change_percent": 5.2,
+        "market_cap": 1200000,
+        "liquidity": 85000,
+        "volume": 450000,
+        "volume1h": 45000,
+        "swaps": 320,
+        "buy_count": 200,
+        "sell_count": 120,
+        "holder_count": 1500,
+        "top10_holder_percent": 35.5,
+        "pool_creation_timestamp": 1713000000,
+        "is_renounced": true,
+        "lp_burned": true,
+        "is_honeypot": 0,
+        "buy_tax": "0.00",
+        "sell_tax": "0.00",
+        "smart_buy_24h": 12,
+        "smart_sell_24h": 3
+      }
+    ]
+  }
+}

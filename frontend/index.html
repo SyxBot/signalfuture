@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>zookAgent — Solana Token Filter</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>zookAgent</h1>
+    <span id="status-dot" class="dot disconnected" title="Stream status"></span>
+    <span id="token-count">0 tokens</span>
+  </header>
+
+  <main>
+    <aside id="filter-panel">
+      <h2>Filters</h2>
+
+      <label>Min Liquidity ($)
+        <input type="number" id="f-liquidity" value="0" min="0" step="1000" />
+      </label>
+
+      <label>Min Real Volume 24h ($)
+        <input type="number" id="f-volume" value="0" min="0" step="1000" />
+      </label>
+
+      <label>Min Market Cap ($)
+        <input type="number" id="f-mc-min" value="0" min="0" step="10000" />
+      </label>
+
+      <label>Max Market Cap ($)
+        <input type="number" id="f-mc-max" value="" min="0" step="10000" placeholder="∞" />
+      </label>
+
+      <label>Max Age (hours)
+        <input type="number" id="f-age" value="720" min="0" step="1" />
+      </label>
+
+      <label>Min Holders
+        <input type="number" id="f-holders" value="0" min="0" step="10" />
+      </label>
+
+      <label>Max Top-10 Concentration (%)
+        <input type="number" id="f-top10" value="100" min="0" max="100" step="1" />
+      </label>
+
+      <label>Min Buy/Sell Ratio
+        <input type="number" id="f-bsr" value="0" min="0" step="0.1" />
+      </label>
+
+      <label>Max Buy Tax (%)
+        <input type="number" id="f-buy-tax" value="10" min="0" max="100" step="1" />
+      </label>
+
+      <label>Max Sell Tax (%)
+        <input type="number" id="f-sell-tax" value="10" min="0" max="100" step="1" />
+      </label>
+
+      <label>Min Smart Buys (24h)
+        <input type="number" id="f-sm-buy" value="0" min="0" step="1" />
+      </label>
+
+      <div class="toggle-row">
+        <label><input type="checkbox" id="f-renounced" /> Renounced only</label>
+        <label><input type="checkbox" id="f-lp-burned" /> LP Burned only</label>
+        <label><input type="checkbox" id="f-no-honeypot" checked /> Exclude honeypots</label>
+      </div>
+
+      <button id="apply-btn">Apply Filters</button>
+      <button id="reset-btn" class="secondary">Reset</button>
+    </aside>
+
+    <section id="feed">
+      <div id="token-grid"></div>
+      <p id="empty-msg" class="hidden">No tokens match the current filters.</p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
