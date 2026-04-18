@@ -1,0 +1,24 @@
+{
+  "code": 0,
+  "msg": "success",
+  "data": {
+    "win_rate": 0.72,
+    "realized_pnl": 45000.0,
+    "unrealized_pnl": 8000.0,
+    "total_pnl": 53000.0,
+    "avg_hold_time": 14400,
+    "trade_count": 85,
+    "wallet_type": "smart_money",
+    "last_active": 1713100000,
+    "recent_trades": [
+      {
+        "token_address": "So11111111111111111111111111111111111111112",
+        "symbol": "TESTKOIN",
+        "type": "buy",
+        "usd_amount": 5000.0,
+        "pnl": 1200.0,
+        "timestamp": 1713090000
+      }
+    ]
+  }
+}
