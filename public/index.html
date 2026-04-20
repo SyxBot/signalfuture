@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZookAgent — Market Intelligence</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-brand">
+      <span class="logo">ZookAgent</span>
+      <span class="tagline">Real-time Market Intelligence</span>
+    </div>
+    <div class="header-meta">
+      <div class="stat-pill">
+        <span class="stat-label">Signals</span>
+        <span class="stat-value" id="stat-count">0</span>
+      </div>
+      <div class="stat-pill">
+        <span class="stat-label">Symbols</span>
+        <span class="stat-value" id="stat-symbols">—</span>
+      </div>
+      <div class="conn-badge" id="conn-badge">
+        <span class="conn-dot" id="conn-dot"></span>
+        <span id="conn-label">Connecting</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="filter-bar">
+    <div class="filter-group">
+      <label class="filter-label" for="filter-type">Type</label>
+      <select class="filter-select" id="filter-type">
+        <option value="">All Types</option>
+        <option value="Aggressive Longs">Aggressive Longs</option>
+        <option value="Aggressive Shorts">Aggressive Shorts</option>
+        <option value="Short Squeeze">Short Squeeze</option>
+        <option value="Long Liquidation">Long Liquidation</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label class="filter-label" for="filter-score">Min Score</label>
+      <input class="filter-input" id="filter-score" type="number"
+             value="0" min="0" max="50" step="0.5" placeholder="0">
+    </div>
+    <div class="filter-group">
+      <label class="filter-label" for="filter-symbol">Symbol</label>
+      <input class="filter-input" id="filter-symbol" type="text"
+             placeholder="e.g. BTCUSDT">
+    </div>
+    <button class="filter-reset" id="btn-reset">Clear</button>
+  </div>
+
+  <main class="main">
+    <div class="table-wrap">
+      <table class="signal-table">
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Symbol</th>
+            <th>Type</th>
+            <th class="col-r">Score</th>
+            <th class="col-r">Vol ×</th>
+            <th class="col-r">Price Δ</th>
+            <th class="col-r">OI Δ (USD)</th>
+            <th class="col-r">Price</th>
+          </tr>
+        </thead>
+        <tbody id="signal-tbody">
+          <tr id="empty-row">
+            <td colspan="8" class="empty-cell">
+              Waiting for signals — warm-up takes ~20 closed candles per symbol...
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <span id="footer-note">Powered by Binance USDT-M Futures WebSocket feeds</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

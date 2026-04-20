@@ -10,3 +10,6 @@ backend/data/
 *.db
 *.db-shm
 *.db-wal
+node_modules/
+data/
+npm-debug.log*
